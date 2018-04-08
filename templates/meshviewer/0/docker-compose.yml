@@ -5,7 +5,7 @@ services:
   meshviewer:
     image: hoffmannhosting/meshviewer-docker
     volumes:
-      - meshviewer-data:/opt/meshviewer/data
+      - meshviewer-data1:/opt/meshviewer
     labels:
       io.rancher.container.hostname_override: container_name
 
@@ -63,6 +63,8 @@ services:
 
 volumes:
   meshviewer-data:
+    driver: rancher-nfs
+  meshviewer-data1:
     driver: rancher-nfs
   zertifikate:
     driver: local
