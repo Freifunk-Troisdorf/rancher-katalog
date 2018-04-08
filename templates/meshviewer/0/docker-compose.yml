@@ -5,14 +5,14 @@ services:
   meshviewer:
     image: hoffmannhosting/meshviewer-docker
     volumes:
-      - meshviewer-data1:/opt/meshviewer
+      - meshviewer-data:/opt/meshviewer/data
     labels:
       io.rancher.container.hostname_override: container_name
 
   nginx:
     image: nginx
     volumes:
-      - meshviewer-data:/usr/share/nginx/html
+      - meshviewer-data:/usr/share/nginx/html:ro
     environment:
       NGINX_HOST: ${DOMAIN}
       NGINX_PORT: 80
