@@ -9,6 +9,7 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: true
+    tty: true
   nginx:
     image: nginx
     volumes:
