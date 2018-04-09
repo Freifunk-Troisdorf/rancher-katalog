@@ -8,8 +8,6 @@ services:
       - meshviewer-data:/opt/meshviewer/data
     labels:
       io.rancher.container.hostname_override: container_name
-
-    entrypoint: 
   nginx:
     image: nginx
     volumes:
