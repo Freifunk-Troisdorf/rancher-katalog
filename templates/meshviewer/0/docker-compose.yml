@@ -9,10 +9,11 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
 
+    entrypoint: 
   nginx:
     image: nginx
-    #volumes:
-    #  - meshviewer-data:/usr/share/nginx/html:ro
+    volumes:
+      - meshviewer-data:/usr/share/nginx/html:ro
     environment:
       NGINX_HOST: ${DOMAIN}
       NGINX_PORT: 80
