@@ -11,7 +11,30 @@ catalog:
       label: Domain
       required: true
       type: string
-
+    - variable: GRAFANA_DOMAIN
+      default: your-domain.de
+      label: Domain
+      required: true
+      type: string
+    - variable: GRAFANA_PASSWORD
+      label: Grafana Password
+      required: true
+      type: password
+    - variable: INFLUXDB_PASSWORD
+      label: Influxdb Password
+      required: true
+      type: password
+    - variable: INFLUX_8083
+      default: 8083
+      label: Influx Port 8083
+      required: true
+      type: string
+    - variable: INFLUX_8086
+      default: 8086
+      label: Influx Port 8086
+      required: true
+      type: string
+      
 services:
 
   meshviewer:
@@ -25,6 +48,18 @@ services:
       port_rules:
       - target_port: 80
         hostname: ${DOMAIN}
+
+  grafana:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      port_rules:
+      - target_port: 3000
+        hostname: ${GRAFANA_DOMAIN}
+
+  influxdb:
+    scale: 1
+    start_on_create: true
 
   letsencrypt:
     scale: 1
