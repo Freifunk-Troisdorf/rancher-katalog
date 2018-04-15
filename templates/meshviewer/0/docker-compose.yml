@@ -93,5 +93,7 @@ services:
 volumes:
   meshviewer-data:
     driver: rancher-nfs
+  influxdb:
+    driver: rancher-nfs
   zertifikate:
     driver: local
