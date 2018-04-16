@@ -60,16 +60,16 @@ services:
   influxdb:
     scale: 1
     start_on_create: true
+
+  redirect-https:
+    scale: 1
+    start_on_create: true
     lb_config:
       port_rules:
       - target_port: 80
         hostname: ${DOMAIN}
       - target_port: 80
         hostname: ${GRAFANA_DOMAIN}
-
-  redirect-https:
-    scale: 1
-    start_on_create: true
 
   letsencrypt-map:
     scale: 1
