@@ -53,7 +53,7 @@ services:
     image: hoffmannhosting/docker-nginx-https-redirect
     labels:
       io.rancher.container.hostname_override: container_name
-    service: http
+      service: http
 
   letsencrypt-map:
     image: janeczku/rancher-letsencrypt:v0.5.0
