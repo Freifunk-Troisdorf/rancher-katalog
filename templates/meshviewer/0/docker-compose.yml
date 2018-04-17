@@ -55,6 +55,12 @@ services:
       io.rancher.container.hostname_override: container_name
       service: http
 
+  fetch-json:
+    image: hoffmannhosting/docker-meshviewer-cron
+      - meshviewer-data:/opt
+    labels:
+      io.rancher.container.hostname_override: container_name
+
   letsencrypt-map:
     image: janeczku/rancher-letsencrypt:v0.5.0
     environment:
