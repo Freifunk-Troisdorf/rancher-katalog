@@ -57,6 +57,7 @@ services:
 
   fetch-json:
     image: hoffmannhosting/docker-meshviewer-cron
+    volumes:
       - meshviewer-data:/opt
     labels:
       io.rancher.container.hostname_override: container_name
