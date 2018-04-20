@@ -16,8 +16,10 @@ services:
         - 'wordpress_data:/var/www/html'
       depends_on:
         - mariadb
+      links:
+        - mariadb:mariadb
       environment:
-        - WORDPRESS_DB_HOST=db
+        - WORDPRESS_DB_HOST=mariadb
         - WORDPRESS_DB_USER=${mariadb_user} 
         - WORDPRESS_DB_PASSWORD=${mariadb_user_password}       
         - WORDPRESS_USERNAME=${wordpress_username}
