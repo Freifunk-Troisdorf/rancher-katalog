@@ -24,9 +24,9 @@ services:
         - WORDPRESS_DB_PASSWORD=${mariadb_user_password}       
         - WORDPRESS_USERNAME=${wordpress_username}
         - WORDPRESS_PASSWORD=${wordpress_password}
-    labels:
-      io.rancher.container.hostname_override: container_name
-      service: https
+      labels:
+        io.rancher.container.hostname_override: container_name
+        service: https
 
   redirect-https:
     image: hoffmannhosting/docker-nginx-https-redirect
