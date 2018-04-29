@@ -149,5 +149,7 @@ volumes:
     driver: rancher-nfs
   influxdb:
     driver: rancher-nfs
+  grafana:
+    driver: rancher-nfs
   zertifikate:
     driver: local
