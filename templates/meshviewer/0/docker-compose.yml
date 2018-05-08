@@ -29,6 +29,7 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
     volumes:
     - grafana:/var/lib/grafana
+    - grafana-config:/etc/grafana
     links:
     - influxdb:influxdb
     labels:
@@ -150,6 +151,8 @@ volumes:
   influxdb:
     driver: rancher-nfs
   grafana:
+    driver: rancher-nfs
+  grafana-config:
     driver: rancher-nfs
   zertifikate:
     driver: local
