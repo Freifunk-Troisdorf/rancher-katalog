@@ -7,13 +7,13 @@ catalog:
   description: Meshviewer - a Freifunk Visualisation
   questions:
     - variable: DOMAIN
-      default: your-domain.de
+      default: map.freifunk-troisdorf.de
       label: Domain
       required: true
       type: string
     - variable: GRAFANA_DOMAIN
-      default: your-domain.de
-      label: Domain
+      default: statistik.freifunk-troisdorf.de
+      label: Grafana Domain
       required: true
       type: string
     - variable: GRAFANA_PASSWORD
