@@ -15,7 +15,6 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       service: 3000
-      service: gitea
 
   database:
     image: postgres:alpine
