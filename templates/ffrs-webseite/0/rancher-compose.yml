@@ -1,0 +1,40 @@
+version: '2'
+
+catalog:
+
+  name: ffrs-website
+  version: 1
+  description: Freifunk Rhein Sieg Webseite
+  questions:
+    - variable: DOMAIN
+      default: freifunk-rhein-sieg.net
+      label: Domain
+      required: true
+      type: string
+
+
+services:
+
+  website:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      port_rules:
+      - target_port: 80
+        hostname: ${DOMAIN}
+
+  redirect-https:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      port_rules:
+      - target_port: 80
+        hostname: ${DOMAIN}
+
+  letsencrypt:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      port_rules:
+      - target_port: 80
+        hostname: ${DOMAIN}
