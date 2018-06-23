@@ -16,8 +16,6 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
       http: yes
-    depends_on:
-      - website
 
   letsencrypt:
     image: janeczku/rancher-letsencrypt:v0.5.0
