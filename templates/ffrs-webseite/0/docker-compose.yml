@@ -62,6 +62,6 @@ services:
 
 volumes:
   web:
-    driver: rancher-nfs
+    driver: local
   zertifikate:
     driver: local
