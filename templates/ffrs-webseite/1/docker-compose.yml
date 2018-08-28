@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+
+  website:
+    build: https://github.com/Freifunk-Rhein-Sieg/freifunk-rhein-sieg.net.git
+    volumes:
+      - web:/project
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+      rap.host: ${DOMAIN}
+      rap.le_host: ${DOMAIN}
+      rap.client_max_body_size: "10G"
+
+volumes:
+  web:
+    driver: local
+  zertifikate:
+    driver: local
