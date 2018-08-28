@@ -25,12 +25,12 @@ services:
 
 volumes:
   proxy-htpasswd:
-    driver: rancher-nfs
+    driver: local
   proxy-vhost:
-    driver: rancher-nfs
+    driver: local
   proxy-le:
-    driver: rancher-nfs
+    driver: local
   proxy-html:
-    driver: rancher-nfs
+    driver: local
   proxy-certs:
-    driver: rancher-nfs
+    driver: local
