@@ -14,4 +14,4 @@ services:
 
 volumes:
   web:
-    driver: rancher-nfs
+    driver: local
