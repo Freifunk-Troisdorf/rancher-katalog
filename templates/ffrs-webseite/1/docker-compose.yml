@@ -11,10 +11,7 @@ services:
       io.rancher.container.pull_image: always
       rap.host: ${DOMAIN}
       rap.le_host: ${DOMAIN}
-      rap.client_max_body_size: "10G"
 
 volumes:
   web:
-    driver: local
-  zertifikate:
-    driver: local
+    driver: rancher-nfs
