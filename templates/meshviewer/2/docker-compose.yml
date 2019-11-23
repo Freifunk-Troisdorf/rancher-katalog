@@ -5,7 +5,7 @@ services:
   meshviewer:
     image: thunderstorm99/meshviewer
     volumes:
-      - meshviewer-app:/usr/share/nginx/html
+      - meshviewer-1:/usr/share/nginx/html
       - meshviewer-cron:/usr/share/nginx/html/data
     labels:
       io.rancher.container.hostname_override: container_name
