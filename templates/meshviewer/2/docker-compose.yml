@@ -1,0 +1,79 @@
+version: '2'
+
+services:
+
+  meshviewer:
+    image: hoffmannhosting/meshviewer-docker
+    volumes:
+      - meshviewer-app:/usr/share/nginx/html
+      - meshviewer-cron:/usr/share/nginx/html/data
+    labels:
+      io.rancher.container.hostname_override: container_name
+      traefik.frontend.rule: Host:map.freifunk-troisdorf.de
+      traefik.enable: true
+      traefik.port: 80
+      traefik.acme: true
+    tty: true
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      GF_SERVER_ROOT_URL: https://${GRAFANA_DOMAIN}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+    volumes:
+    - grafana:/var/lib/grafana
+    - grafana-config:/etc/grafana
+    links:
+    - influxdb:influxdb
+    labels:
+      io.rancher.container.pull_image: always
+      grafana: yes
+      traefik.frontend.rule: Host:statistik.freifunk-troisdorf.de
+      traefik.enable: true
+      traefik.port: 3000
+      traefik.acme: true
+
+  influxdb:
+    image: tutum/influxdb
+    volumes:
+      - influxdb:/data
+    environment:
+      PRE_CREATE_DB: freifunk   
+      ADMIN_USER: freifunk   
+      INFLUXDB_INIT_PWD: ${INFLUXDB_PASSWORD}
+    ports:
+      - ${INFLUX_8083}:8083
+      - ${INFLUX_8086}:8086
+    labels:
+      io.rancher.container.hostname_override: container_name
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus:/prometheus-data
+      - prometheus-conf:/etc/
+    labels:
+      io.rancher.container.hostname_override: container_name
+
+  fetch-json:
+    image: hoffmannhosting/docker-meshviewer-cron
+    volumes:
+      - meshviewer-cron:/opt/data
+    labels:
+      io.rancher.container.hostname_override: container_name
+
+volumes:
+  meshviewer-app:
+    driver: rancher-nfs
+  meshviewer-cron:
+    driver: rancher-nfs
+  influxdb:
+    driver: rancher-nfs
+  grafana:
+    driver: rancher-nfs
+  grafana-config:
+    driver: rancher-nfs
+  prometheus:
+    driver: local
+  prometheus-conf:
+    driver: local
