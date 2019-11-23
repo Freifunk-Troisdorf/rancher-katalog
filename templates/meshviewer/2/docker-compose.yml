@@ -3,7 +3,7 @@ version: '2'
 services:
 
   meshviewer:
-    image: hoffmannhosting/meshviewer-docker
+    image: thunderstorm99/meshviewer
     volumes:
       - meshviewer-app:/usr/share/nginx/html
       - meshviewer-cron:/usr/share/nginx/html/data
